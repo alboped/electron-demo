@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <title>辞职信</title>
+    <style>
+      html, body {
+        width: 100%;
+        height: 100%;
+        background-color: #f2f1f6;
+      }
+
+      h1.title {
+        text-align: center;
+        color: red;
+      }
+
+      .content {
+        height: 300px;
+        vertical-align: middle;
+      }
+
+      .content-p {
+        text-align: center;
+        vertical-align: middle;
+        line-height: 300px;
+        font-size: 26px;
+      }
+
+      .cancel-btn {
+        position: absolute;
+        top: 350px;
+        left: 350px;
+      }
+
+      #next-view {
+        display: none;
+        position:absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #f2f1f6;
+        padding-top: 100px;
+        padding-left: 60px;
+        font-size: 26px;
+        color: red;
+      }
+
+      .close-btn {
+        position: absolute;
+        right: 60px;
+        bottom: 60px;
+      }
+    </style>
+    <script>
+      const ipcRenderer = require('electron').ipcRenderer;
+      function closeWin () {
+        ipcRenderer.send('asynchronous-message', 'ping');
+      }
+
+      window.isCanClose = 123;
+
+      function okClose() {
+        document.getElementById('next-view').style.display = 'block';
+      }
+    </script>
+  </head>
+  <body>
+    <h1 class="title" style="text-align: center;">辞职信</h1>
+    <div class="content">
+      <p class="content-p"><span>尊敬的各位领导</span><img src="./img/gaoci.jpg" alt="" srcset=""></p>
+    </div>
+    <button class="ok-btn" onclick="okClose()">确定</button>
+    <button class="cancel-btn" id="cancel-btn">不同意</button>
+    <div id="next-view">
+      <p>老板大人，臣告退了，这一退可能就是一辈子。</p>
+      <q>!!!!敬礼!!!!</q>
+
+      <button class="close-btn" onClick="closeWin()">退出</button>
+    </div>
+    <!-- You can also require other files to run in this process -->
+    <script src="./renderer.js"></script>
+  </body>
+</html>
