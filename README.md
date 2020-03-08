@@ -10,5 +10,5 @@ cd electron-demo
 # 安装依赖
 npm install
 # 打包
-npm package
+npm run package
 ```
